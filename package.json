@@ -1,0 +1,17 @@
+{
+  "name": "fake_hotel",
+  "version": "1.0.0",
+  "description": "fake hotel app taks",
+  "main": "app.js",
+  "scripts": {
+    "test": "tst"
+  },
+  "author": "Dusan Stevanovic",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "request": "^2.81.0"
+  }
+}
