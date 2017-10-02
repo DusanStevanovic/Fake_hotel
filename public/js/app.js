@@ -29,13 +29,17 @@ $(function() {
                     $this.closest('.item').find('.item-bottom').addClass('hide');
                 }
 
+                if (!$(this).hasClass('toggle')) {
+                    return;
+                }
+
                 $.ajax({
-                    url: 'http://fake-hotel-api.herokuapp.com/api/reviews?hotel_id=' + hotelId,
+                    url: '/proxy/api/reviews?hotel_id=' + hotelId,
                     type: 'GET',
                     dataType: 'json',
                     timeout: 5000
                 }).done(function (data) {
-                    data.forEach(function (review) {
+                    data.apiBody.forEach(function (review) {
                         $this.closest('.item').find('.j-review-name').text(review.name);
                         $this.closest('.item').find('.j-review-comment').text(review.comment);
 

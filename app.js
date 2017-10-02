@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const request = require('request');
+const url = require('url');
 
 
 app.set('view engine', 'ejs');
@@ -23,9 +24,20 @@ app.get('/', function (req, res) {
         });
 
     });
-
 });
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+app.get('/proxy/*', (req, res, next) => {
+    const proxied = url.parse(req.originalUrl);
+
+    const realUrl = 'http://fake-hotel-api.herokuapp.com/' + proxied.path.replace('/proxy/', '')
+    console.log(realUrl);
+
+    request(realUrl, function (err, response, body) {
+        const apiBody = JSON.parse(response.body);
+        return res.json({apiBody});
+    });
+});
+
+app.listen(3001, function () {
+    console.log('fake_hotel app listening on port 3000!');
 });
