@@ -9,56 +9,48 @@
 <body>
     <a href="javascript:;" class="button-grey j-load-hotels">Load Hotels</a>
 
-    <% if (typeof data !== 'undefined') { %>
-        <div class="container">
-            <% data.slice(0, 5).forEach(function (item) { %>
-                <div class="item hide">
-                    <small class="hidden-field hide"><%= item.id %></small>
-                    <div class="item-image">
-                        <img src="<%= item.images[0] %>" />
-                    </div>
-                    <div class="item-content">
-                        <h3>
-                            <%= item.name %>
-                            <p>
-                                <% if (item.stars === 1) { %>
-                                ★☆☆☆☆
-                                <% } else if (item.stars === 2) { %>
-                                ★★☆☆☆
-                                <% } else if (item.stars === 3) { %>
-                                ★★★☆☆
-                                <% } else if (item.stars === 4) { %>
-                                ★★★★☆
-                                <% } else if (item.stars === 5) { %>
-                                ★★★★★
-                                <% }  %>
-                            </p>
-                        </h3>
-                        <h4><%= item.city %> - <%= item.country %> </h4>
-                        <p><%= item.description %></p>
-                        <a href="javascript:;" class="button-grey j-load-preview">Show Reviews</a>
-                        <div class="item-price">
-                            <span class="price"><%= item.price %>&euro;</span>
-                            <span><%= item.date_start %> - <%= item.date_end %></span>
-                        </div>
-                    </div>
-                    <div class="item-bottom hide">
-                        <p class="error hide"></p>
-                        <div class="bottom-item">
-                            <div class="circle j-circle"></div>
-                            <div class="bottom-content">
-                                <h4 class="j-review-name"></h4>
-                                <p class="j-review-comment"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <% }); %>
-        </div>
-    <% } %>
+    <div class="j-error hide"></div>
+    <div class="container"></div>
 
 
 <script src="../js/vendor/jquery-1.8.3.min.js"></script>
 <script src="../js/app.js"></script>
+<script type="text/template" id="j-hotel-item">
+    <div class="item hide">
+        <small class="hidden-field hide">$0</small>
+        <div class="item-image">
+            <img src="$1" />
+        </div>
+        <div class="item-content">
+            <h3>
+                $2
+                <p>
+                    $3
+                </p>
+            </h3>
+            <h4>$4 - $5 </h4>
+            <p>$6</p>
+            <a href="javascript:;" class="button-grey j-load-preview">Show Reviews</a>
+            <div class="item-price">
+                <span class="price">$7&euro;</span>
+                <span>$8 - $9</span>
+            </div>
+        </div>
+        <div class="item-bottom hide">
+            <p class="error hide"></p>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="j-review">
+    <div class="bottom-item">
+        <div class="circle j-circle"></div>
+        <div class="bottom-content">
+            <h4 class="j-review-name"></h4>
+            <p class="j-review-comment"></p>
+        </div>
+    </div>
+</script>
+
 </body>
 </html>

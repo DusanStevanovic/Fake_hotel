@@ -12,18 +12,8 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
-    let url = 'http://fake-hotel-api.herokuapp.com/api/hotels';
 
-    request(url, function (err, response, body) {
-        let data = JSON.parse(body);
-        let error = JSON.parse(err);
-
-        res.render('index', {
-            data: data,
-            error: error
-        });
-
-    });
+    res.render('index');
 });
 
 app.get('/proxy/*', (req, res, next) => {
@@ -38,6 +28,6 @@ app.get('/proxy/*', (req, res, next) => {
     });
 });
 
-app.listen(3001, function () {
-    console.log('fake_hotel app listening on port 3000!');
+app.listen(3003, function () {
+    console.log('fake_hotel app listening on port 3003!');
 });
